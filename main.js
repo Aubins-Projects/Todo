@@ -135,5 +135,39 @@ function fix_string_list(strings) {
 }
 
 function priority() {
+    var order_list = [];
+    for (var item in dict) {
+        order_list.push(Array(item, parseInt(fix_string_list(dict[item])[0], 10), parseInt(fix_string_list(dict[item])[1], 10), parseInt(fix_string_list(dict[item])[2],10)));
+            }
+    order_list = order_list.sort(Comparator);
+    //console.log(order_list);
+    tablizer(order_list);
+}
 
+function Comparator(a, b) {
+    if (a[1] < b[1]) return -1;
+    if (a[1] > b[1]) return 1;
+    return 0;
+}
+
+function tablizer(list) {
+    if (typeof (Storage) !== "undefined") {
+
+       
+        var print_string = ('<table style="width: 100%"><tr><th>Task</th><th>Priority</th><th>Hours</th><th>Minutes</th></tr>');
+       
+        for (var i = 0; i < list.length - 1; i++) {
+            print_string += "<tr>";
+            print_string += "<td>" + list[i][0] + "</td><td>" + list[i][1] + "</td><td>" + list[i][2] + "</td><td>" + list[i][3] + "</td>";
+            
+            print_string += "</tr>";
+        }
+        print_string += "</table >";
+        
+
+        document.getElementById("list").innerHTML = print_string;
+
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
 }
