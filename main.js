@@ -25,11 +25,7 @@ function clickCounter() {
 }
 function listMaker() {
     if (typeof (Storage) !== "undefined") {
-        if (localStorage.clickcount) {
-            localStorage.clickcount = Number(localStorage.clickcount) + 1;
-        } else {
-            localStorage.clickcount = 1;
-        }
+        
         var new_string_list = "";
         for (var key in dict) {
             new_string_list += key + " " + dict[key] + "<br>";
