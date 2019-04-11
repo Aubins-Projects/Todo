@@ -23,13 +23,18 @@ function addTaks() {
         } else {
             var minutes = prompt("What is the time to complete the task in minutes?", "Type Here");
             if (minutes == null || minutes == "") {
-                console.log("Don't try and break it");
+                //console.log("Don't try and break it");
             } else {
                 var priority = prompt("What is the priority?", "Type Here");
                 if (priority == null || priority == "") {
-                    console.log("Don't try and break it");
+                    //console.log("Don't try and break it");
                 } else {
                     dict[task] = Array(priority, time, minutes, false);
+                   // console.log(localStorage.dict);
+                   // console.log("end of adding");
+                    listMaker();
+                   // console.log(localStorage.dict);
+                   // console.log("end of load list");
                 }
             }
         }
@@ -51,14 +56,18 @@ function clickCounter() {
 function listMaker() {
     if (typeof (Storage) !== "undefined") {
         
-
+        
         var new_string_list = "";
+        var print_string = "";
+        var counter = 1;
         for (var key in dict) {
             new_string_list += key + " " + dict[key] + "<br>";
+            print_string += counter + "   " + key + " " + dict[key] + "<br>";
+            counter++;
         }
         localStorage.dict = new_string_list;
 
-        document.getElementById("list").innerHTML = new_string_list;
+        document.getElementById("list").innerHTML = print_string;
         
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
@@ -112,5 +121,5 @@ function make_dict(l) {
             dict[l[i][0]] = l[i][1];
         }
     }
-    console.log(dict)
+    //console.log(dict)
 }
