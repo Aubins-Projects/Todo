@@ -11,6 +11,7 @@ var dict = {
     Test4: Array(3, 3, 0, false)
 }
 
+
 function clickCounter() {
     if (typeof (Storage) !== "undefined") {
         if (localStorage.clickcount) {
@@ -26,13 +27,66 @@ function clickCounter() {
 function listMaker() {
     if (typeof (Storage) !== "undefined") {
         
+
         var new_string_list = "";
         for (var key in dict) {
             new_string_list += key + " " + dict[key] + "<br>";
         }
+        localStorage.dict = new_string_list;
+
         document.getElementById("list").innerHTML = new_string_list;
         
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
     }
+}
+
+function remover() {
+    var txt;
+    var item = prompt("Please enter the list number you wish to delete:", "#");
+    if (item == null || item == "") {
+        txt = "User cancelled the prompt.";
+    } else {
+        var counter = 1;
+        for (var prop in dict) {
+            console.log(counter);
+            console.log(item);
+            console.log(counter == parseInt(item, 10));
+            if (counter == parseInt(item, 10)) {
+                console.log("removing the item");
+                delete dict[prop];
+            }
+            counter += 1;
+        }
+    }
+    listMaker();
+}
+
+function loadList() {
+    var temp_list2 = [];
+    var temp_list = localStorage.dict.split('<br>');
+    //console.log(temp_list);
+    make_dict(printList(temp_list));
+    
+}
+
+function printList(t_list) {
+    var new_list = [];
+    for (var i = 0; i < t_list.length; i++) {
+        //console.log(t_list[i]);
+        var temp_item = t_list[i].split(' ');
+        //console.log(temp_item);
+        new_list.push(temp_item);
+    }
+    return new_list;
+}
+
+function make_dict(l) {
+    dict = {};
+    for (var i = 0; i < l.length-1; i++) {
+        if (l.length > 0) {
+            dict[l[i][0]] = l[i][1];
+        }
+    }
+    console.log(dict)
 }
