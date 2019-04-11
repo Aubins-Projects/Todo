@@ -29,10 +29,12 @@ function addTaks() {
                 if (priority == null || priority == "") {
                     //console.log("Don't try and break it");
                 } else {
-                    dict[task] = Array(priority, time, minutes, false);
+                    dict[task] = priority +"," + time + "," + minutes + "," + "false";
                    // console.log(localStorage.dict);
                    // console.log("end of adding");
+                    
                     listMaker();
+                    
                    // console.log(localStorage.dict);
                    // console.log("end of load list");
                 }
@@ -56,15 +58,19 @@ function clickCounter() {
 function listMaker() {
     if (typeof (Storage) !== "undefined") {
         
-        
         var new_string_list = "";
-        var print_string = "";
+        var print_string = ('<table style="width: 100%"><tr><th>Number</th><th>Task</th><th>Priority</th><th>Hours</th><th>Minutes</th></tr>');
         var counter = 1;
         for (var key in dict) {
+            print_string += "<tr>";
             new_string_list += key + " " + dict[key] + "<br>";
-            print_string += counter + "   " + key + " " + dict[key] + "<br>";
+            var temporary_list = fix_string_list(dict[key]);
+            console.log(temporary_list[2]);
+            print_string += "<td>" + counter + "</td><td>" + key + "</td><td>" + temporary_list[0] + "</td><td>" + temporary_list[1] + "</td><td>" + temporary_list[2] + "</td>";
             counter++;
+            print_string += "</tr>";
         }
+        print_string += "</table >";
         localStorage.dict = new_string_list;
 
         document.getElementById("list").innerHTML = print_string;
@@ -122,4 +128,12 @@ function make_dict(l) {
         }
     }
     //console.log(dict)
+}
+
+function fix_string_list(strings) {
+    return strings.split(',');
+}
+
+function priority() {
+
 }
