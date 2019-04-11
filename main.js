@@ -12,6 +12,30 @@ var dict = {
 }
 
 
+function addTaks() {
+    var task = prompt("What is the task?", "Type Here");
+    if (task == null || task == "") {
+        console.log("Don't try and break it");
+    } else {
+        var time = prompt("What is the time to complete the task in hours?", "Type Here");
+        if (time == null || time == "") {
+            console.log("Don't try and break it");
+        } else {
+            var minutes = prompt("What is the time to complete the task in minutes?", "Type Here");
+            if (minutes == null || minutes == "") {
+                console.log("Don't try and break it");
+            } else {
+                var priority = prompt("What is the priority?", "Type Here");
+                if (priority == null || priority == "") {
+                    console.log("Don't try and break it");
+                } else {
+                    dict[task] = Array(priority, time, minutes, false);
+                }
+            }
+        }
+    }
+}
+
 function clickCounter() {
     if (typeof (Storage) !== "undefined") {
         if (localStorage.clickcount) {
