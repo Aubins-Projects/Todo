@@ -5,14 +5,31 @@
     <meta charset="utf-8" />
     <title>Time Management</title>
     <link rel="stylesheet" href="main.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+
     <script type="text/javascript" src="main.js"></script>
+
+    <script type="text/javascript" src=" https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+
 </head>
 <body>
     <a href="http://google.com" class="button">Go to Google</a>
     <button onclick="test()">New Task</button>
-    <button onclick="test()">Save Task</button>
-    <button onclick="test()">Today's Schedule</button>
+    <button onclick="clickCounter()">Save Task</button>
+    <button onclick="listMaker()">Today's Schedule</button>
     <button onclick="test()">Bonus Items</button>
 
+
+
+    <div id="result"></div>
+    <div id="list"></div>
 </body>
 </html>
