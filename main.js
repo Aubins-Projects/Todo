@@ -42,15 +42,15 @@ function addTask() {
         console.log("Don't try and break it");
     } else {
         var time = prompt("What is the time to complete the task in hours?", "Type Here");
-        if (time == null || time == "") {
+        if (time == null || time == "" || isNaN(time)) {
             console.log("Don't try and break it");
         } else {
             var minutes = prompt("What is the time to complete the task in minutes?", "Type Here");
-            if (minutes == null || minutes == "") {
+            if (minutes == null || minutes == "" || isNaN(minutes)) {
                 console.log("Don't try and break it");
             } else {
                 var priority = prompt("What is the priority?", "Type Here");
-                if (priority == null || priority == "") {
+                if (priority == null || priority == "" || isNaN(priority)) {
                     console.log("Don't try and break it");
                 } else {
                     
@@ -154,6 +154,74 @@ function tablizer(list, p = true, h = true, m = true, dd = true, c = false, coun
         document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
     }
 }
+//Prints the Full List
+function listMaker() {
+    tablizer(ListOfTasks, true, true, true, true, true,true);
+}
+// Removes an item from the array
+function remover() {
+    listMaker();
+    var txt;
+    var item = prompt("Please enter the list number you wish to delete:", "#");
+    if (item == null || item == "") {
+        txt = "User cancelled the prompt.";
+    } else {
+        if (isNaN(item) || item < 1 || item > ListOfTasks.length) {
+            console.log("not a valid number");
+        }
+        else {
+            ListOfTasks.splice((parseInt(item) - 1), 1)
+            SaveListToJSON(ListOfTasks);
+        }
+    }
+    listMaker();
+}
+
+//Edit Item
+function editItem() {
+    listMaker();
+    var item = prompt("Please enter the list number you wish to edit:", "#");
+    item--;
+    if (item == null || item == "") {
+        txt = "User cancelled the prompt.";
+    } else {
+        if (isNaN(item) || item < 1 || item > ListOfTasks.length) {
+            console.log("not a valid number");
+        }
+        else {
+            var otask = ListOfTasks[item][0];
+            var opriority = ListOfTasks[item][1][0];
+            var ohours = ListOfTasks[item][1][1];
+            var ominutes = ListOfTasks[item][1][2];
+            var oduedate = ListOfTasks[item][1][3];
+            var ocomplete = ListOfTasks[item][1][4];
+            var task = prompt("What is the task?", otask);
+            if (task == null || task == "") {
+                console.log("Don't try and break it");
+            } else {
+                var time = prompt("What is the time to complete the task in hours?",ohours);
+                if (time == null || time == "" || isNaN(time)) {
+                    console.log("Don't try and break it");
+                } else {
+                    var minutes = prompt("What is the time to complete the task in minutes?", ominutes);
+                    if (minutes == null || minutes == "" || isNaN(minutes)) {
+                        console.log("Don't try and break it");
+                    } else {
+                        var priority = prompt("What is the priority?", opriority);
+                        if (priority == null || priority == "" || isNaN(priority)) {
+                            console.log("Don't try and break it");
+                        } else {
+                            ListOfTasks.splice((parseInt(item) - 1), 1)
+                            ListOfTasks.push(Array(task, Array(priority, time, minutes, dateFunction(), "false")));
+                            SaveListToJSON(ListOfTasks);
+                            tablizer(ListOfTasks);
+                        }
+                    }
+                }
+            }
+        }
+        }
+    }
 
 
 //
@@ -166,42 +234,10 @@ function test() {
 
 }
 
-function listMaker() {
-    tablizer(ListOfTasks, true, true, true, true, true,true);
-}
 
-function remover() {
-    var txt;
-    var item = prompt("Please enter the list number you wish to delete:", "#");
-    if (item == null || item == "") {
-        txt = "User cancelled the prompt.";
-    } else {
-        var counter = 1;
-        for (var i = 0; i < ListOfTasks.length;i++) {
-            //console.log(counter);
-            console.log(ListOfTasks[i]);
-            console.log(counter == parseInt(item, 10));
-            if (counter == parseInt(item, 10)) {
-                console.log("removing the item");
-                delete ListOfTasks[i];
-            }
-            counter += 1;
-        }
-    }
-    listMaker();
-}
 
-function printList(t_list) {
-    var new_list = [];
-    for (var i = 0; i < t_list.length-1; i++) {
-        //console.log(t_list[i]);
-        var temp_item = t_list[i].split('! ');
-        console.log(temp_item);
-        new_list.push(temp_item);
-    }
-    console.log(new_list);
-    return new_list;
-}
+
+
 
 
 
