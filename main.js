@@ -68,6 +68,19 @@ function PriorityClick() {
     priority();
     BonusTime();
 }
+//change priority
+function decrement(thePriority) {
+    //[1][0] is priority
+    for (var i = 0; i < ListOfTasks.length; i++) {
+        if (thePriority < parseInt(ListOfTasks[i][1][0])){
+            //console.log(thePriority);
+            //console.log("Found one smaller: " + ListOfTasks[i][1][0]);
+            ListOfTasks[i][1][0] = parseInt(ListOfTasks[i][1][0]) - 1;
+        }
+
+    }
+
+}
 // This sets the priority
 function priority() {
     var order_list = [];
@@ -88,7 +101,7 @@ function BonusTime() {
     var smaller_list = [];
     var remaining_time = AdditAllUp2(double_checklist);
     var bonus_list = [];
-    console.log("this is the remaining time: " + remaining_time);
+    //console.log("this is the remaining time: " + remaining_time);
     for (var i = 0; i < ListOfTasks.length;i++) {
         //console.log(ListOfTasks[i]);
         if (isItemInArray(double_checklist, ListOfTasks[i])){
@@ -105,8 +118,8 @@ function BonusTime() {
         var total_minutes = 0;
         total_minutes += parseInt(smaller_list[i][1][2]);
         total_minutes += parseInt(smaller_list[i][1][1]) * 60;
-        console.log("This is the minutes math: " + total_minutes);
-        console.log("For this task: " + smaller_list[i][0]);
+        //console.log("This is the minutes math: " + total_minutes);
+        //console.log("For this task: " + smaller_list[i][0]);
         if (remaining_time >= total_minutes) {
             bonus_list.push(smaller_list[i])
             }
@@ -154,7 +167,7 @@ function AdditAllUp2(list) {
     for (var i = 0; i < list.length; i++) {
         totalminutes += list[i][1][2];
         totalminutes += list[i][1][1] * 60;
-        console.log(totalminutes);
+        //console.log(totalminutes);
         if (totalminutes < AssumptionTime) {
             new_list.push(list[i])
             var string = "Total Time To Complete above tasks: " + Math.floor(totalminutes / 60) + " hrs " + (totalminutes % 60) + " mins";
@@ -172,7 +185,7 @@ function AdditAllUp(list) {
     for (var i = 0; i < list.length; i++) {
         totalminutes += list[i][1][2];
         totalminutes += list[i][1][1] * 60;
-        console.log(totalminutes);
+        //console.log(totalminutes);
         if (totalminutes < AssumptionTime) {
             new_list.push(list[i])
             var string = "Total Time To Complete above tasks: " + Math.floor(totalminutes / 60)+ " hrs "+ (totalminutes % 60)+" mins";
@@ -327,7 +340,9 @@ function remover() {
             console.log("not a valid number");
         }
         else {
-            ListOfTasks.splice((parseInt(item) - 1), 1)
+            decrement(ListOfTasks[(parseInt(item) - 1)][1][0]);
+            ListOfTasks.splice((parseInt(item) - 1), 1);
+
             SaveListToJSON(ListOfTasks);
         }
     }
@@ -417,7 +432,7 @@ function importer() {
 
 function exporter() {
     var temp_string = localStorage.dict;
-    console.log(temp_string);
+    //console.log(temp_string);
     document.getElementById("myInput").value = temp_string;
     CopyFunction();
     
