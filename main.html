@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
     -->
     <script type="text/javascript" src="main.js"></script>
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <!--
         <script type="text/javascript" src=" https://code.jquery.com/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -20,7 +21,7 @@
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
         -->
 </head>
-<body>
+<body class="bgimg-1">
     <!--
     <a href="http://google.com" class="button">Go to Google</a>
     -->
@@ -30,7 +31,7 @@
     <button onclick="listMaker()" class="myButton">All Tasks</button>
     <button onclick="sorter()" class="myButton">Sort By Priority</button>
     <button onclick="remover()" class="myButton">Remove Items</button>
-
+    <button onclick="TogetherJS(this); return false;">Collaboration Button</button>
     <script>
         basicLoad()
     </script>
@@ -38,7 +39,7 @@
     <div id="result"></div>
     <div id="list"></div>
     <div id="additional"></div>
-    <p id="bonusthings" style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+    <p id="bonusthings" style="font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
         <br />
         <div id="bonus"></div>
     </p>
