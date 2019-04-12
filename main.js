@@ -77,6 +77,20 @@ function priority() {
     tablizer(timedList);
 }
 
+function sorter() {
+    var order_list = [];
+    for (var i = 0; i < ListOfTasks.length; i++) {
+        order_list.push(Array(ListOfTasks[i][0], Array(parseInt(ListOfTasks[i][1][0], 10), parseInt(ListOfTasks[i][1][1], 10), parseInt(ListOfTasks[i][1][2], 10), ListOfTasks[i][1][3], ListOfTasks[i][1][4])));
+    }
+    order_list = order_list.sort(Comparator);
+    //console.log("This is where to look");
+    //console.log(ListOfTasks);
+    //console.log(order_list);
+    tablizer(order_list);
+    InsertMathInfo("");
+
+}
+
 
 function Comparator(a, b) {
     if (a[1][0] < b[1][0]) return -1;
@@ -243,29 +257,6 @@ function InsertMathInfo( text) {
 //
 //
 // JavaScript source code
-function test() {
-    console.log("test worked")
-
-}
-
-
-
-
-
-
-
-
-function fix_string_list(strings) {
-    if (typeof (strings) == 'string') {
-        return strings.split(',');
-    }
-    else {
-        return strings;
-    }
-}
-
-
-
 
 
 
