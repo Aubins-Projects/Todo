@@ -70,11 +70,11 @@ function priority() {
         order_list.push(Array(ListOfTasks[i][0], Array(parseInt(ListOfTasks[i][1][0], 10), parseInt(ListOfTasks[i][1][1], 10), parseInt(ListOfTasks[i][1][2], 10), ListOfTasks[i][1][3], ListOfTasks[i][1][4])));
     }
     order_list = order_list.sort(Comparator);
-    console.log("This is where to look");
-    console.log(ListOfTasks);
-    console.log(order_list);
-    tablizer(order_list);
-    AdditAllUp(order_list);
+    //console.log("This is where to look");
+    //console.log(ListOfTasks);
+    //console.log(order_list);
+    var timedList = AdditAllUp(order_list);
+    tablizer(timedList);
 }
 
 
@@ -86,12 +86,17 @@ function Comparator(a, b) {
 
 function AdditAllUp(list) {
     var totalminutes = 0;
+    var new_list = [];
     for (var i = 0; i < list.length; i++) {
         totalminutes += list[i][1][2];
         totalminutes += list[i][1][1] * 60;
         console.log(totalminutes);
-
+        if (totalminutes < 480) {
+            new_list.push(list[i])
+        }
+        
     }
+    return new_list;
 }
 //This prints out the table
 //Order is Task, Priority, Hours, Minutes, Due Date, completed
@@ -181,7 +186,7 @@ function remover() {
 function editItem() {
     listMaker();
     var item = prompt("Please enter the list number you wish to edit:", "#");
-    item--;
+    
     if (item == null || item == "") {
         txt = "User cancelled the prompt.";
     } else {
@@ -189,6 +194,7 @@ function editItem() {
             console.log("not a valid number");
         }
         else {
+            item--;
             var otask = ListOfTasks[item][0];
             var opriority = ListOfTasks[item][1][0];
             var ohours = ListOfTasks[item][1][1];
@@ -211,7 +217,7 @@ function editItem() {
                         if (priority == null || priority == "" || isNaN(priority)) {
                             console.log("Don't try and break it");
                         } else {
-                            ListOfTasks.splice((parseInt(item) - 1), 1)
+                            ListOfTasks.splice((parseInt(item)), 1)
                             ListOfTasks.push(Array(task, Array(priority, time, minutes, dateFunction(), "false")));
                             SaveListToJSON(ListOfTasks);
                             tablizer(ListOfTasks);
