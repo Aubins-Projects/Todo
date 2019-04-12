@@ -93,9 +93,12 @@ function AdditAllUp(list) {
         console.log(totalminutes);
         if (totalminutes < 480) {
             new_list.push(list[i])
+            var string = "Total Time To Complete above tasks: " + Math.floor(totalminutes / 60)+ " hrs "+ (totalminutes % 60)+" mins";
+            InsertMathInfo(string);
         }
         
     }
+    
     return new_list;
 }
 //This prints out the table
@@ -161,7 +164,8 @@ function tablizer(list, p = true, h = true, m = true, dd = true, c = false, coun
 }
 //Prints the Full List
 function listMaker() {
-    tablizer(ListOfTasks, true, true, true, true, true,true);
+    tablizer(ListOfTasks, true, true, true, true, true, true);
+    InsertMathInfo("");
 }
 // Removes an item from the array
 function remover() {
@@ -229,7 +233,11 @@ function editItem() {
         }
     }
 
+function InsertMathInfo( text) {
+    var print_string="<br><p>"+text+ "</p>"
+    document.getElementById("additional").innerHTML = print_string;
 
+}
 //
 //
 //
