@@ -1,5 +1,6 @@
 //Global Variable
 var ListOfTasks = Array();
+var AssumptionTime = 480;
 
 //JSON Function
 
@@ -62,7 +63,11 @@ function addTask() {
         }
     }
 }
-
+//
+function PriorityClick() {
+    priority();
+    BonusTime();
+}
 // This sets the priority
 function priority() {
     var order_list = [];
@@ -75,8 +80,40 @@ function priority() {
     //console.log(order_list);
     var timedList = AdditAllUp(order_list);
     tablizer(timedList);
+    
+    return timedList;
 }
+function BonusTime() {
+    var double_checklist = priority();
+    var smaller_list = [];
+    var remaining_time = AdditAllUp2(double_checklist);
+    var bonus_list = [];
+    console.log("this is the remaining time: " + remaining_time);
+    for (var i = 0; i < ListOfTasks.length;i++) {
+        //console.log(ListOfTasks[i]);
+        if (isItemInArray(double_checklist, ListOfTasks[i])){
+            //console.log("found one");
+        }
+        else {
+            smaller_list.push(ListOfTasks[i]);
+            //console.log("added to smaller list");
+            //console.log(smaller_list);
+        }
+    }
 
+    for (var i = 0; i < smaller_list.length; i++) {
+        var total_minutes = 0;
+        total_minutes += parseInt(smaller_list[i][1][2]);
+        total_minutes += parseInt(smaller_list[i][1][1]) * 60;
+        console.log("This is the minutes math: " + total_minutes);
+        console.log("For this task: " + smaller_list[i][0]);
+        if (remaining_time >= total_minutes) {
+            bonus_list.push(smaller_list[i])
+            }
+
+    }
+    tablizer2( bonus_list);
+}
 function sorter() {
     var order_list = [];
     for (var i = 0; i < ListOfTasks.length; i++) {
@@ -92,10 +129,40 @@ function sorter() {
 }
 
 
+function isItemInArray(array, item) {
+    for (var i = 0; i < array.length; i++) {
+        // This if statement depends on the format of your array
+        //console.log("you are in the comparison");
+        //console.log(array[i][0]);
+       // console.log(item[0]);
+        if (array[i][0] == item[0]) {
+            return true;   // Found it
+        }
+    }
+    return false;   // Not found
+}
+
 function Comparator(a, b) {
     if (a[1][0] < b[1][0]) return -1;
     if (a[1][0] > b[1][0]) return 1;
     return 0;
+}
+function AdditAllUp2(list) {
+    var totalminutes = 0;
+    var new_list = [];
+    for (var i = 0; i < list.length; i++) {
+        totalminutes += list[i][1][2];
+        totalminutes += list[i][1][1] * 60;
+        console.log(totalminutes);
+        if (totalminutes < AssumptionTime) {
+            new_list.push(list[i])
+            var string = "Total Time To Complete above tasks: " + Math.floor(totalminutes / 60) + " hrs " + (totalminutes % 60) + " mins";
+            InsertMathInfo(string);
+        }
+
+    }
+
+    return (AssumptionTime-totalminutes);
 }
 
 function AdditAllUp(list) {
@@ -105,7 +172,7 @@ function AdditAllUp(list) {
         totalminutes += list[i][1][2];
         totalminutes += list[i][1][1] * 60;
         console.log(totalminutes);
-        if (totalminutes < 480) {
+        if (totalminutes < AssumptionTime) {
             new_list.push(list[i])
             var string = "Total Time To Complete above tasks: " + Math.floor(totalminutes / 60)+ " hrs "+ (totalminutes % 60)+" mins";
             InsertMathInfo(string);
@@ -118,6 +185,7 @@ function AdditAllUp(list) {
 //This prints out the table
 //Order is Task, Priority, Hours, Minutes, Due Date, completed
 //
+
 function tablizer(list, p = true, h = true, m = true, dd = true, c = false, counter = false) {
     
     if (typeof (Storage) !== "undefined") {
@@ -176,6 +244,69 @@ function tablizer(list, p = true, h = true, m = true, dd = true, c = false, coun
         document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
     }
 }
+
+//Better Table Printer
+
+function tablizer2(list,where="bonus", p = true, h = true, m = true, dd = true, c = false, counter = false) {
+
+    if (typeof (Storage) !== "undefined") {
+        var print_string = ('<table style="width: 100%"><tr>')
+        if (counter == true) {
+            var count = 1;
+            print_string += '<th>List Number</th>';
+        }
+        print_string += '<th>Task</th>';
+        if (p == true) {
+            print_string += '<th>Priority</th>';
+        }
+        if (h == true) {
+            print_string += '<th>Hours</th>';
+        }
+        if (m == true) {
+            print_string += '<th>Minutes</th>';
+        }
+        if (dd == true) {
+            print_string += '<th>Due Date</th>';
+        }
+        if (c == true) {
+            print_string += '<th>Complete</th>';
+        }
+        //var print_string = ('<table style="width: 100%"><tr><th>Task</th><th>Priority</th><th>Hours</th><th>Minutes</th></tr>');
+        for (var i = 0; i < list.length; i++) {
+            print_string += "<tr>";
+            if (counter == true) {
+                print_string += "<td>" + count + "</td>";
+                count++;
+            }
+            print_string += "<td>" + list[i][0] + "</td>"
+
+            if (p == true) {
+                print_string += "<td>" + list[i][1][0] + "</td>";
+            }
+            if (h == true) {
+                print_string += "<td>" + list[i][1][1] + "</td>";
+            }
+            if (m == true) {
+                print_string += "<td>" + list[i][1][2] + "</td>";
+            }
+            if (dd == true) {
+                print_string += "<td>" + list[i][1][3] + "</td>";
+            }
+            if (c == true) {
+                print_string += "<td>" + list[i][1][4] + "</td>";
+            }
+            //print_string += "<td>" + list[i][0] + "</td><td>" + list[i][1][0] + "</td><td>" + list[i][1][1] + "</td><td>" + list[i][1][2] + "</td>";
+
+            print_string += "</tr>";
+        }
+        print_string += "</table >";
+        document.getElementById(where).innerHTML = print_string;
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+}
+
+
 //Prints the Full List
 function listMaker() {
     tablizer(ListOfTasks, true, true, true, true, true, true);
