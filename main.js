@@ -14,8 +14,8 @@ function ImportBackToList(myJSON) {
 
 //Default Array for Tasks
 
-function basicLoad() {
-    ListOfTasks = ImportBackToList(localStorage.dict);
+function basicLoad(data) {
+    ListOfTasks = ImportBackToList(data);
 }
 
 function setDefaultList(num) {
@@ -392,7 +392,36 @@ function InsertMathInfo( text) {
 //
 // JavaScript source code
 
+function CopyFunction() {
+    /* Get the text field */
+    var copyText = document.getElementById("myInput");
 
+    /* Select the text field */
+    copyText.select();
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    alert("Copied the text: " + copyText.value);
+} 
+function importer() {
+    
+    var copyText = document.getElementById("myInput").value;
+    basicLoad(copyText);
+    localStorage.dict = copyText;
+
+
+
+}
+
+function exporter() {
+    var temp_string = localStorage.dict;
+    console.log(temp_string);
+    document.getElementById("myInput").value = temp_string;
+    CopyFunction();
+    
+}
 
 function clearLocalStorage() {
     localStorage.dict = {};

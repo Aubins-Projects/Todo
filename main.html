@@ -31,10 +31,18 @@
     <button onclick="listMaker()" class="myButton">All Tasks</button>
     <button onclick="sorter()" class="myButton">Sort By Priority</button>
     <button onclick="remover()" class="myButton">Remove Items</button>
-    <button onclick="TogetherJS(this); return false;">Collaboration Button</button>
+
+    <!-- <button onclick="TogetherJS(this); return false;">Collaboration Button</button>
+        -->
     <script>
-        basicLoad()
+        basicLoad(localStorage.dict)
     </script>
+    <!-- The text field -->
+    <input type="text" value="" id="myInput">
+
+    <!-- The button used to copy the text -->
+    <button onclick="exporter()">Export Items</button>
+    <button onclick="importer()">Import Items</button>
 
     <div id="result"></div>
     <div id="list"></div>
