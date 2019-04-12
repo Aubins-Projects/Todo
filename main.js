@@ -96,9 +96,15 @@ function AdditAllUp(list) {
 //This prints out the table
 //Order is Task, Priority, Hours, Minutes, Due Date, completed
 //
-function tablizer(list,p=true,h=true,m=true,dd=true,c=false) {
+function tablizer(list, p = true, h = true, m = true, dd = true, c = false, counter = false) {
+    
     if (typeof (Storage) !== "undefined") {
-        var print_string = ('<table style="width: 100%"><tr><th>Task</th>')
+        var print_string = ('<table style="width: 100%"><tr>')
+        if (counter == true){
+            var count = 1;
+            print_string += '<th>List Number</th>';
+        }
+        print_string +='<th>Task</th>';
         if (p == true) {
             print_string += '<th>Priority</th>';
         }
@@ -117,6 +123,10 @@ function tablizer(list,p=true,h=true,m=true,dd=true,c=false) {
         //var print_string = ('<table style="width: 100%"><tr><th>Task</th><th>Priority</th><th>Hours</th><th>Minutes</th></tr>');
         for (var i = 0; i < list.length; i++) {
             print_string += "<tr>";
+            if (counter == true) {
+                print_string += "<td>" + count + "</td>";
+                count++;
+            }
             print_string += "<td>" + list[i][0] + "</td>"
             
             if (p == true) {
@@ -157,7 +167,7 @@ function test() {
 }
 
 function listMaker() {
-    tablizer(ListOfTasks, true, true, true, true, true);
+    tablizer(ListOfTasks, true, true, true, true, true,true);
 }
 
 function remover() {
@@ -179,21 +189,6 @@ function remover() {
         }
     }
     listMaker();
-}
-
-function loadList() {
-    var temp_list2 = Array();
-    var temp_list = localStorage.dict.split('<br>');
-    console.log("This is the loadlist output for breaking on br");
-    console.log(temp_list);
-    console.log("This is the end of the loadlist output for breaking on br");
-    for (var i = 0; i < temp_list.length-1; i++) {
-        temp_list2.push( temp_list[i].split('! '));
-    }
-    console.log(temp_list2);
-    ListOfTasks = temp_list2;
-    //make_dict(printList(temp_list));
-    
 }
 
 function printList(t_list) {
