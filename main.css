@@ -7,6 +7,15 @@ a.button
     text-decoration: none;
     color: initial;
 }
+.myButton {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.myButton:hover {
+        background-color: darkslateblue; /* Green */
+        color: white;
+    }
 
 table {
     border-collapse: collapse;
@@ -15,3 +24,135 @@ table {
 table, th, td {
     border: 1px solid black;
 }
+
+
+    table.greenTable {
+        font-family: Georgia, serif;
+        border: 6px solid #24943A;
+        background-color: #D4EED1;
+        width: 100%;
+        text-align: center;
+    }
+
+        table.greenTable td, table.greenTable th {
+            border: 2px solid #24943A;
+            padding: 3px 2px;
+        }
+
+        table.greenTable tbody td {
+            font-size: 13px;
+        }
+
+        table.greenTable thead {
+            background: #24943A;
+            background: -moz-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+            background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+            background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+            border-bottom: 0px solid #444444;
+        }
+
+            table.greenTable thead th {
+                font-size: 19px;
+                font-weight: bold;
+                color: #F0F0F0;
+                text-align: left;
+                border-left: 2px solid #24943A;
+            }
+
+                table.greenTable thead th:first-child {
+                    border-left: none;
+                }
+
+        table.greenTable tfoot {
+            font-size: 13px;
+            font-weight: bold;
+            color: #F0F0F0;
+            background: #24943A;
+            background: -moz-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+            background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+            background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+            border-top: 1px solid #24943A;
+        }
+
+            table.greenTable tfoot td {
+                font-size: 13px;
+            }
+
+            table.greenTable tfoot .links {
+                text-align: right;
+            }
+
+                table.greenTable tfoot .links a {
+                    display: inline-block;
+                    background: #FFFFFF;
+                    color: #24943A;
+                    padding: 2px 8px;
+                    border-radius: 5px;
+                }
+
+    table.blueTable {
+        border: 1px solid #1C6EA4;
+        background-color: #EEEEEE;
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+    }
+
+        table.blueTable td, table.blueTable th {
+            border: 2px solid #AAAAAA;
+            padding: 3px 2px;
+        }
+
+        table.blueTable tbody td {
+            font-size: 13px;
+        }
+
+        table.blueTable tr:nth-child(even) {
+            background: #D0E4F5;
+        }
+
+        table.blueTable thead {
+            background: #1C6EA4;
+            background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+            background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+            background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+            border-bottom: 2px solid #444444;
+        }
+
+            table.blueTable thead th {
+                font-size: 15px;
+                font-weight: bold;
+                color: #FFFFFF;
+                border-left: 2px solid #D0E4F5;
+            }
+
+                table.blueTable thead th:first-child {
+                    border-left: none;
+                }
+
+        table.blueTable tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background: #D0E4F5;
+            background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+            background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+            background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+            border-top: 2px solid #444444;
+        }
+
+            table.blueTable tfoot td {
+                font-size: 14px;
+            }
+
+            table.blueTable tfoot .links {
+                text-align: right;
+            }
+
+                table.blueTable tfoot .links a {
+                    display: inline-block;
+                    background: #1C6EA4;
+                    color: #FFFFFF;
+                    padding: 2px 8px;
+                    border-radius: 5px;
+                }

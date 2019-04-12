@@ -112,7 +112,8 @@ function BonusTime() {
             }
 
     }
-    tablizer2( bonus_list);
+    tablizer2(bonus_list);
+    document.getElementById("bonusthings").innerHTML = "Bonus Items";
 }
 function sorter() {
     var order_list = [];
@@ -189,7 +190,7 @@ function AdditAllUp(list) {
 function tablizer(list, p = true, h = true, m = true, dd = true, c = false, counter = false) {
     
     if (typeof (Storage) !== "undefined") {
-        var print_string = ('<table style="width: 100%"><tr>')
+        var print_string = ('<table class="blueTable" ><tr>')
         if (counter == true){
             var count = 1;
             print_string += '<th>List Number</th>';
@@ -250,7 +251,7 @@ function tablizer(list, p = true, h = true, m = true, dd = true, c = false, coun
 function tablizer2(list,where="bonus", p = true, h = true, m = true, dd = true, c = false, counter = false) {
 
     if (typeof (Storage) !== "undefined") {
-        var print_string = ('<table style="width: 100%"><tr>')
+        var print_string = ('<table class="greenTable"><tr>')
         if (counter == true) {
             var count = 1;
             print_string += '<th>List Number</th>';
@@ -311,6 +312,8 @@ function tablizer2(list,where="bonus", p = true, h = true, m = true, dd = true, 
 function listMaker() {
     tablizer(ListOfTasks, true, true, true, true, true, true);
     InsertMathInfo("");
+    document.getElementById("bonusthings").innerHTML = "";
+    document.getElementById("bonus").innerHTML = "";
 }
 // Removes an item from the array
 function remover() {

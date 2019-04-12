@@ -24,12 +24,12 @@
     <!--
     <a href="http://google.com" class="button">Go to Google</a>
     -->
-    <button onclick="addTask()">New Task</button>
-    <button onclick="editItem()">Edit Task</button>
-    <button onclick="PriorityClick()">Prioritize</button>
-    <button onclick="listMaker()">All Tasks</button>
-    <button onclick="sorter()">Sort By Priority</button>
-    <button onclick="remover()">Remove Items</button>
+    <button onclick="addTask()" class="myButton">New Task</button>
+    <button onclick="editItem()" class="myButton">Edit Task</button>
+    <button onclick="PriorityClick()" class="myButton">Prioritize</button>
+    <button onclick="listMaker()" class="myButton">All Tasks</button>
+    <button onclick="sorter()" class="myButton">Sort By Priority</button>
+    <button onclick="remover()" class="myButton">Remove Items</button>
 
     <script>
         basicLoad()
@@ -38,8 +38,8 @@
     <div id="result"></div>
     <div id="list"></div>
     <div id="additional"></div>
-    <p>
-        BONUS COMPLETION ITEMS<br />
+    <p id="bonusthings" style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">
+        <br />
         <div id="bonus"></div>
     </p>
 </body>
